@@ -23,7 +23,7 @@ while camera.isOpened():
     #image = imutils.resize(image, width=min(600, image.shape[1]))
     if FirstType==False:
         # detect people in the image
-        (rects, weights) = hog.detectMultiScale(image, winStride=(4,4), padding=(8,8), scale=0.3)
+        (rects, weights) = hog.detectMultiScale(image, winStride=(4,4), padding=(8,8), scale=0.5)
         # draw the original bounding boxes
         for (x, y, w, h) in rects:
             cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
@@ -31,7 +31,7 @@ while camera.isOpened():
             for newbox in boxes:
                 px = int(newbox[0])-x
                 py = int(newbox[1])-y
-                if(abs(px)>70 and abs(py)>70):
+                if(abs(px)>30 and abs(py)>30):
                     tracker.add(image,bsbox)
         FirstType=True
     j=j+1
